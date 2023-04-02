@@ -40,10 +40,7 @@ class DatabaseTable
         $query = rtrim($query, ','); //removing right white spaces or commas
         $query .= ');';
 
-        // echo $query . "XXXXX";
-        // die;
-
-        // $values = $this->processDates($values);
+        
 
         $stmnt = $this->pdo->prepare($query);
         $stmnt->execute();
@@ -70,13 +67,26 @@ class DatabaseTable
         $stmnt = $this->pdo->prepare('DELETE FROM '. $this->table . ' WHERE ' . 
       $field . '=:value');
 
-      $stmnt->execute($values);
+      $stmnt->execute($values); //it takses array as value
 
     //   echo $stmnt;
     //   die;
 
       return $stmnt;
 
+    }
+
+    public function find($field, $value){
+
+        $query = 'SELECT * FROM '. $this->table. ' WHERE '. $field . ' = :value';
+
+        $values = [':value' => $value];
+
+        $stmnt = $this->pdo->prepare($query);
+
+        $stmnt->execute($values);
+
+        return $stmnt;
     }
 
 }

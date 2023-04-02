@@ -1,5 +1,7 @@
 <?php
 
+
+
 // INCLUDED VIEW RECORDS AT LAST
 
 try {
@@ -9,24 +11,27 @@ try {
 
     $doctorsTable = new DatabaseTable($pdo, 'doctors', 'did');
 
-    if (isset($_POST['delete']) && isset($_POST['did'])) { //if delte set
+    if (isset($_POST['searchValue'])) { 
 
-        $did = $_POST['did'];
+        $sv = $_POST['searchValue'];
 
-        $r = $doctorsTable->delete('did', $did);
+        $result = $doctorsTable->find('dname', $sv);
 
-        if (!$r) {
-            echo "DELETE failed<br><br>";
+    
+
+        if (!$result) {
+            echo "find failed";
         }
-
 
     }
 
     ob_start();
 
-    $title = "Show Records";
+    include 'templates/viewDocs.html.php';
 
-    $output = ob_get_clean(); // OB -S WORK IS ENDED & THE WHOLE HTML IS SHOWN in the last line(include layout)
+    $title = "Show Doctors";
+
+    $output = ob_get_clean();  // OB -S WORK IS ENDED & THE WHOLE HTML IS SHOWN in the last line(include layout)
 
 } catch (PDOException $e) {
 
@@ -35,5 +40,5 @@ try {
 
 }
 
-include_once 'selectDoc.php';
+
 include_once 'templates/layout.html.php';

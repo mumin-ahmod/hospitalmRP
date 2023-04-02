@@ -5,10 +5,7 @@ try {
     include_once 'databaseConnection.php';
     include_once 'databaseTable.php';
 
-    // $sql = "SELECT * FROM classics"; // select AWLWAYS - EVERYTIME WORKS
-    // $result = $pdo->query($sql);
-
-    // $doctorsTable = new DatabaseTable($pdo, 'doctors', 'did');
+    
 
     $patientsTable = new DatabaseTable($pdo, 'patients', 'pid');
 
