@@ -1,7 +1,7 @@
 
 <?php
 
-include_once 'login.php';
+
 
 include_once 'databaseConnection.php';
 include_once 'databaseTable.php';
@@ -25,15 +25,25 @@ try {
         // html form with get post and save it to the variable ($<-data<-post<html-Form)
 
         $dspeciality = $_POST['dspeciality'];
-        $degrees = $_POST['degrees'];
+        $degree = $_POST['degrees'];
         $joined = $_POST['joined'];
   
 
+        $values = [
+
+          
+            
+            'dname' => $dname,
+            'dspeciality' => $dspeciality,
+            'degree' => $degree,
+            'joined' => $joined,
+        ];
         // // time to perform the query
         // $sql = "INSERT INTO classics(author, title, year, isbn, category) VALUES('$author', '$title', '$year', '$isbn', '$category')";
 
-        $r = addRecord($pdo, $author, $title, $category, $year, $isbn);
+        // $r = $doctorsTable->addRecord($pdo, $author, $title, $category, $year, $isbn);
 
+        $r = $doctorsTable->insert($values);
         // $result = $pdo->query($sql);
 
         if (!$r) {
@@ -46,7 +56,7 @@ try {
 
         $title = 'Add New Record';
 
-        include 'templates/addrecord.html.php';
+        include 'templates/addDoc.html.php';
 
 
         $output = ob_get_clean();

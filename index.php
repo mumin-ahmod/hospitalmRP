@@ -7,7 +7,7 @@ $title = "Book Records Site";
 
 ob_start();
 
-include_once 'templates/addrecord.html.php';
+include_once 'templates/addDoc.html.php';
 
 $output = ob_get_clean();
 

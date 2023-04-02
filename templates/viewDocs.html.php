@@ -41,13 +41,13 @@ foreach ($rowFetch as $row) {
     <td>
 
 
-    <form action= "delete.php" method="post">
+    <form action= "deleteDoc.php" method="post">
 
 
     <input type='hidden' name='delete' value='yes'>
 
 
-      <input type='hidden' name='id' value="<?php echo $row['did'] ?>">
+      <input type='hidden' name='did' value="<?php echo $row['did'] ?>">
 
 
 

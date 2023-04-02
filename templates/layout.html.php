@@ -7,19 +7,16 @@
     <title><?=$title?></title>
 </head>
 <body>
-    <header>
-
+    <header >
    <?php include_once "header.html";?>
-
-
-
     </header>
 
 
-<main>
-
+    <div style="margin-left:10%;margin-right:10%">
+    <main>
 <?=$output?>
 </main>
+    </div>
 
 
 
