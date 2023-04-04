@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,45 +14,51 @@
 </head>
 <body >
 
-
-
 <!-- navbar ended -->
 
 <br>
 
-<form action= "addDoc.php" method="post">
+<form action= "../index.php?action=edit" method="post">
 
+<?php
+
+    $placeDoc= $_POST['placeDoc'];
+    $placDegrees= $_POST['placDegrees'];
+    $placeSpeciality= $_POST['placeSpeciality'];
+    $placeJoined= $_POST['placeJoined'];
+
+    $did= $_POST['did'];
+
+?>
 
 <div class="row">
   <div class="col">
-    <input type="text" class="form-control" placeholder="Doctors Name" name="dname">
+    <input type="text" class="form-control" value="<?php echo $placeDoc   ?>" placeholder='Doc Name' name="dname">
   </div>
   <div class="col">
-    <input type="text" class="form-control" placeholder="Speciality" name="dspeciality">
+    <input type="text" class="form-control" value="<?php echo $placeSpeciality   ?>" placeholder='Doc Speciality' name="dspeciality">
   </div>
 </div>
 <br>
 <div class="row">
   <div class="col">
-    <input type="text" class="form-control" placeholder="Degrees" name="degrees" >
+    <input type="text" class="form-control" value="<?php echo $placDegrees   ?>" placeholder='Degrees' name="degrees" >
   </div>
 </div>
  <br>
 <div class="row">
   <div class="col-md-5">
-    <input type="date" class="form-control" placeholder="Joined" name="joined" >
+    <input type="date" class="form-control" value="<?php echo $placeJoined   ?>" placeholder='Join Date' name="joined" >
   </div>
-  
+  <input type='hidden' name='did' value="<?php echo $did ?>">
 </div>
 <br>
-<button class= " btn btn-success" type = "submit">Save Record</button>
+<button class= " btn btn-success" type = "submit">Update Record</button>
 
 
 </form>
 
 <?php
-
-
 
 
 

@@ -1,8 +1,8 @@
 
 <?php
 
-include_once 'databaseConnection.php';
-include_once 'databaseTable.php';
+include_once 'includes/databaseConnection.php';
+include_once 'classes/databaseTable.php';
 
 try {
 
@@ -35,7 +35,7 @@ try {
         if (!$r) {
             echo "insert failed <br> <br>";
         } else {
-            echo " <p>Added Successfully. </p>";
+            echo " <p class=\"bg-info fs-4 text-center\">Added Successfully! </p>";
         }
 
         ob_start();

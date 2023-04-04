@@ -5,9 +5,8 @@
 // INCLUDED VIEW RECORDS AT LAST
 
 try {
-
-    include_once 'databaseConnection.php';
-    include_once 'databaseTable.php';
+    include_once 'includes/databaseConnection.php';
+    include_once 'classes/databaseTable.php';
 
     $doctorsTable = new DatabaseTable($pdo, 'doctors', 'did');
 

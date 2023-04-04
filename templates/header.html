@@ -17,11 +17,12 @@
           <a class="nav-link active" aria-current="page" href="http://localhost/hospitalmrp/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/hospitalmrp/selectDoc.php">Doctors</a>
+          <a class="nav-link active" href="http://localhost/hospitalmrp/index.php?action=findAll">Doctors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="http://localhost/hospitalmrp/selectPatient.php">Patients</a>
         </li>
+      
         <li class="nav-item">
           <a class="nav-link active" href="http://localhost/hospitalmrp/templates/auth.html.php" tabindex="-1">Login</a>
         </li>
@@ -31,7 +32,7 @@
             Add
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Add Doctor</a>
+            <a class="dropdown-item" href="http://localhost/hospitalmrp/templates/addDoc.html.php">Add Doctor</a>
             <a class="dropdown-item" href="#">Add Patient</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Add New Record</a>
@@ -39,7 +40,7 @@
         </li>
 
       </ul>
-      <form class="d-flex" action="find.php" method="post">
+      <form class="d-flex" action="findDoc.php" method="post">
         <input class="form-control me-2" type="search" placeholder="Search Name" aria-label="Search" name="searchValue">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>

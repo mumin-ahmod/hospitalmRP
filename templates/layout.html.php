@@ -12,11 +12,10 @@
     </header>
 
 
-    <div style="margin-left:10%;margin-right:10%">
-    <main>
+
+    <main style="margin-left:10%; margin-right:10%">
 <?=$output?>
 </main>
-    </div>
 
 
 

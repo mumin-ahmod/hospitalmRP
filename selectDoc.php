@@ -2,23 +2,18 @@
 
 try {
 
-    include_once 'databaseConnection.php';
-    include_once 'databaseTable.php';
+    include_once 'includes/databaseConnection.php';
+    include_once 'classes/databaseTable.php';
 
-    // $sql = "SELECT * FROM classics"; // select AWLWAYS - EVERYTIME WORKS
-    // $result = $pdo->query($sql);
 
     $doctorsTable = new DatabaseTable($pdo, 'doctors', 'did');
 
-    $patientsTable = new DatabaseTable($pdo, 'patients', 'pid');
 
     $result = $doctorsTable->findAll();
 
     if (!$result) {
         die("Database access failed");
     } else {
-
-        // $rows = $result->rowCount();
 
         ob_start();
 

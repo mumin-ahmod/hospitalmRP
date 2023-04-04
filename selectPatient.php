@@ -2,8 +2,8 @@
 
 try {
 
-    include_once 'databaseConnection.php';
-    include_once 'databaseTable.php';
+    include_once 'includes/databaseConnection.php';
+    include_once 'classes/databaseTable.php';
 
     
 
@@ -21,7 +21,7 @@ try {
 
         include 'templates/viewPatients.php';
 
-        $title = "Show Doctors";
+        $title = "Show Patients";
 
         $output = ob_get_clean(); // OB -S WORK IS ENDED & THE WHOLE HTML IS SHOWN
     }

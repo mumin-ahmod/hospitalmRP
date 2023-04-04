@@ -40,21 +40,25 @@ foreach ($rowFetch as $row) {
 
     <td>
 
+<div class="row">
 
-    <form action= "deleteDoc.php" method="post">
-
-
+    <form action= "index.php?action=delete" method="post" class="col">
     <input type='hidden' name='delete' value='yes'>
-
-
-      <input type='hidden' name='did' value="<?php echo $row['did'] ?>">
-
-
-
+     <input type='hidden' name='did' value="<?php echo $row['did'] ?>">
     <button class= "btn btn-danger" type="submit">Delete Record</button>
-
     </form>
 
+    <form action= "templates/updateDoc.html.php" method="post" class="col">
+    <input type='hidden' name='placeDoc' value="<?php echo $row['dname'] ?>">
+    <input type='hidden' name='placeSpeciality' value="<?php echo $row['dspeciality'] ?>">
+    <input type='hidden' name='placDegrees' value="<?php echo $row['degree'] ?>">
+    <input type='hidden' name='placeJoined' value="<?php echo $row['joined'] ?>">
+
+     <input type='hidden' name='did' value="<?php echo $row['did'] ?>">
+    <button class= "btn btn-info " type="submit">Edit</button>
+    </form>
+
+    </div>
   </td>
 
   </tr>
