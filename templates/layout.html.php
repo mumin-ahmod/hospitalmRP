@@ -14,7 +14,7 @@
 
 
     <main style="margin-left:10%; margin-right:10%">
-<?=$output?>
+<?= $output ?>
 </main>
 
 

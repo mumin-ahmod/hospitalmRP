@@ -13,7 +13,7 @@ class DatabaseTable
     }
     public function findAll()
     {
-
+    
         $stmnt = $this->pdo->prepare('SELECT * FROM ' . $this->table);
 
         $result = $stmnt->execute();
