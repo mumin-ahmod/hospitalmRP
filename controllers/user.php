@@ -1,12 +1,17 @@
 <?php
 
-// USER CONTROLLER
+namespace Controllers;
 
-include_once 'classes/databaseTable.php';
+
+
+use Database; //instead of include Databasetable class
 
 class UserController
 {
-    public function __construct(private DatabaseTable $usersTable)
+
+    
+
+    public function __construct(private \Database\DatabaseTable $usersTable)
     {
 
     }
@@ -18,7 +23,7 @@ class UserController
 
         return [
             'title' => "Sign Up",
-            'output' => header('location: templates/signup.html.php'),
+            'template' => header('location: templates/signup.html.php'),
             'errors' => [],
         ];
 
@@ -28,7 +33,7 @@ class UserController
     {
         return [
             'title' => "Sign Up Successful",
-            'output' => include_once 'templates/signupSuccess.html.php',
+            'template' => include 'templates/signupSuccess.html.php',
         ];
     }
 
@@ -82,56 +87,7 @@ class UserController
 
     }
 
-    public function loginSubmit()
-    {
-
-        $user = $_POST['user'] ?? [];
-
-        if (empty($user['email'])) {
-            $errors[] = 'Email cannnot be blank <br>';
-        } else if (filter_var($user['email']) == false) {
-            $errors[] = 'Invalid Email';
-        }
-        if (empty($user['password'])) {
-            $errors[] = 'Password cannnot be blank <br>';
-        }
-
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([user['email']]);
-        $dbuser = $stmt->fetch();
-
-        if ($user && password_verify($user['pass'], $dbuser['pass'])) {
-            $_SESSION['user']=user['email'];
-            $_SESSION['role']=$dbuser['role'];
-        } else {
-            echo "invalid";
-        }
-
-    }
-
-    public function isloggedIn()
-    {
-
-        if (isset($_SESSION["username"])) {
-
-            // header("Location: login.html.php");
-
-            return [
-                'title' => "Logged IN",
-                'output' => include 'templates/home.html.php',
-                'errors' => $errors,
-                'login' => true,
-                'role' => $_SESSION["role"],
-            ];
-
-        } else {
-            return [
-                'output' => include 'templates/signup.html.php',
-                'login' => false,
-                'role' => 'user',
-            ];
-
-        }
-    }
+    
 
 }
+

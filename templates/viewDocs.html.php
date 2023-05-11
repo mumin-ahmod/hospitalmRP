@@ -43,13 +43,13 @@ foreach ($rowFetch as $row) {
 
 <div class="row">
 
-    <form action= "index.php?action=delete" method="post" class="col">
+    <form action= "index.php?action=delete&controller=doc" method="post" class="col">
     <input type='hidden' name='delete' value='yes'>
      <input type='hidden' name='did' value="<?php echo $row['did'] ?>">
     <button class= "btn btn-danger" type="submit">Delete Record</button>
     </form>
 
-    <form action= "templates/updateDoc.html.php" method="post" class="col">
+    <form action= "updateDoc.html.php" method="post" class="col">
     <input type='hidden' name='placeDoc' value="<?php echo $row['dname'] ?>">
     <input type='hidden' name='placeSpeciality' value="<?php echo $row['dspeciality'] ?>">
     <input type='hidden' name='placDegrees' value="<?php echo $row['degree'] ?>">

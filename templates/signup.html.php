@@ -10,15 +10,17 @@
 
 <?php
 
+if(!empty($errors)){
 
 foreach($errors ?? '' as $e){
   echo $e;
+}
 }
 
 ?>
 
 
-<form action="index.php?action=signup" method="post">
+<form action="index.php?action=signupSubmit&controller=user" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Name:</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name" name="user[name]">

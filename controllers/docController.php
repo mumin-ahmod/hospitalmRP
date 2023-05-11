@@ -1,5 +1,6 @@
 <?php
 
+namespace Controllers;
 
 class DocController
 {
@@ -7,8 +8,8 @@ class DocController
     // private $authorsTable;
     // private $jokesTable;
 
-    public function __construct(private DatabaseTable $doctorsTable,
-        private DatabaseTable $patientsTable) {
+    public function __construct(private \Database\DatabaseTable$doctorsTable,
+        private \Database\DatabaseTable$patientsTable) {
 
     }
 
@@ -22,19 +23,16 @@ class DocController
 
         //include 'templates/viewDocs.html.php';
 
-
         return ['template' => "viewDocs.html.php",
-         'title' => $title, 
-         
-         'variables' => [
-             'result' =>$result
-         ]
-        
-        
+            'title' => $title,
+
+            'variables' => [
+                'result' => $result,
+            ],
+
         ];
 
     }
-
 
     public function home()
     {
@@ -73,8 +71,6 @@ class DocController
         }
         header("location: selectDoc.php");
 
-       
-
         return ['output' => $output, 'title' => $title];
 
     }
@@ -82,68 +78,73 @@ class DocController
     public function edit()
     {
 
-        try {
+        if (!$this->authentication->isLoggedIn()) {
 
-            if (isset($_POST['dname']) && // INSERT SET
-                isset($_POST['dspeciality']) &&
-                isset($_POST['degrees']) &&
-                isset($_POST['joined']) &&
-                isset($_POST['did'])
+            return ['template' => 'error.html.php',
+                'title' => 'Not Authorized'];
+        } else {
 
-            ) {
+            try {
 
-                $dname = $_POST['dname']; //take the author from
-                $dspeciality = $_POST['dspeciality'];
-                $degree = $_POST['degrees'];
-                $joined = $_POST['joined'];
-                $did = $_POST['did'];
+                if (isset($_POST['dname']) && // INSERT SET
+                    isset($_POST['dspeciality']) &&
+                    isset($_POST['degrees']) &&
+                    isset($_POST['joined']) &&
+                    isset($_POST['did'])
 
-                $values = [
+                ) {
 
-                    'did' => $did,
-                    'dname' => $dname,
-                    'dspeciality' => $dspeciality,
-                    'degree' => $degree,
-                    'joined' => $joined,
-                ];
+                    $dname = $_POST['dname']; //take the author from
+                    $dspeciality = $_POST['dspeciality'];
+                    $degree = $_POST['degrees'];
+                    $joined = $_POST['joined'];
+                    $did = $_POST['did'];
 
-                $r = $this->doctorsTable->update($values);
+                    $values = [
+
+                        'did' => $did,
+                        'dname' => $dname,
+                        'dspeciality' => $dspeciality,
+                        'degree' => $degree,
+                        'joined' => $joined,
+                    ];
+
+                    $r = $this->doctorsTable->update($values);
+
+                }
+
+                if (!$r) {
+                    echo " <p class=\"bg-info fs-4 text-center\">Updated Failed. </p>";
+
+                } else {
+
+                    echo " <p class=\"bg-info fs-4 text-center\">Updated Successfully! </p>";
+
+                    $result = $this->doctorsTable->findAll();
+
+                    // include 'templates/viewDocs.html.php';
+
+                    $title = "Doctor Edited";
+
+                    // $output = ob_get_clean(); // OB -S WORK IS ENDED & THE WHOLE HTML IS SHOWN
+                }
+
+            } catch (PDOException $e) {
+
+                $output = 'unable to connect to database' . $e->getMessage() . 'in' .
+                $e->getFile() . ':' . $e->getLine();
 
             }
 
-            if (!$r) {
-                echo " <p class=\"bg-info fs-4 text-center\">Updated Failed. </p>";
+            return ['template' => 'viewDocs.html.php',
+                'title' => $title,
+                'variables' => [
+                    'result' => $result,
+                ],
 
-            } else {
-
-                echo " <p class=\"bg-info fs-4 text-center\">Updated Successfully! </p>";
-
-
-
-                $result = $this->doctorsTable->findAll();
-
-                // include 'templates/viewDocs.html.php';
-
-                $title = "Doctor Edited";
-
-                // $output = ob_get_clean(); // OB -S WORK IS ENDED & THE WHOLE HTML IS SHOWN
-            }
-
-        } catch (PDOException $e) {
-
-            $output = 'unable to connect to database' . $e->getMessage() . 'in' .
-            $e->getFile() . ':' . $e->getLine();
+            ];
 
         }
-
-
-        return ['template' =>'viewDocs.html.php',
-         'title' => $title,
-         'variables' => [
-            'result' =>$result
-        ]
-        
-        ];
 
     }
 

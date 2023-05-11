@@ -1,5 +1,8 @@
 <?php
 
+namespace Database;
+
+
 class DatabaseTable
 {
 
@@ -7,7 +10,7 @@ class DatabaseTable
     // public $table;
     // public $primaryKey;
 
-    public function __construct(private PDO $pdo, private string $table, private string $primaryKey)
+    public function __construct(private \PDO $pdo, private string $table, private string $primaryKey)
     {
 
     }

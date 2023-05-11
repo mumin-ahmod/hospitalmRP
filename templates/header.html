@@ -17,14 +17,14 @@
           <a class="nav-link active" aria-current="page" href="http://localhost/hospitalmrp/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/hospitalmrp/index.php?action=findall&controller=doc">Doctors</a>
+          <a class="nav-link active" href="http://localhost/hospitalmrp/index.php?action=findAll&controller=doc">Doctors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="http://localhost/hospitalmrp/selectPatient.php">Patients</a>
         </li>
       
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/hospitalmrp/index.php?controller=user&action=signUpSubmit" >Login</a>
+         
         </li>
 
         <li class="nav-item dropdown">
@@ -40,10 +40,23 @@
         </li>
 
       </ul>
+
+      <div>
       <form class="d-flex" action="findDoc.php" method="post">
         <input class="form-control me-2" type="search" placeholder="Search Name" aria-label="Search" name="searchValue">
         <button class="btn btn-outline-success" type="submit">Search</button>
+
+        <?php if($isloggedIn): ?>
+        <a class="nav-link active" href="http://localhost/hospitalmrp/index.php?action=signUpSubmit&controller=user" >Log out</a>
+      
+        <?php else: ?>
+        <a class="nav-link active" href="http://localhost/hospitalmrp/templates/login.html.php" >Login</a>
+        <?php endif; ?>
       </form>
+
+     
+
+    </div>
     </div>
   </div>
 </nav>
